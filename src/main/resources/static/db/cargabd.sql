@@ -17,27 +17,27 @@ USE `cargabd` ;
 -- -----------------------------------------------------
 -- Table `cargabd`.`Docente`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cargabd`.`Docente` (
-  `idDocente` INT NOT NULL,
-  `NombreDocente` NVARCHAR(50) NOT NULL,
-  `ApellidoDocente` NVARCHAR(50) NOT NULL,
-  PRIMARY KEY (`idDocente`))
+CREATE TABLE IF NOT EXISTS `cargabd`.`docente` (
+  `id_docente` INT NOT NULL,
+  `nombre_docente` NVARCHAR(50) NOT NULL,
+  `apellido_docente` NVARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id_docente`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
 -- Table `cargabd`.`Semestre`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cargabd`.`Semestre` (
-  `idSemestre` INT NOT NULL,
-  `SemestreAcademico` NVARCHAR(50) NOT NULL,
-  `CargaAcademica` INT NOT NULL,
-  `Docente_idDocente` INT NOT NULL,
-  PRIMARY KEY (`idSemestre`),
-  INDEX `fk_Semestre_Docente_idx` (`Docente_idDocente` ASC) VISIBLE,
-  CONSTRAINT `fk_Semestre_Docente`
-    FOREIGN KEY (`Docente_idDocente`)
-    REFERENCES `cargabd`.`Docente` (`idDocente`)
+CREATE TABLE IF NOT EXISTS `cargabd`.`semestre` (
+  `id_semestre` INT NOT NULL,
+  `semestre_academico` NVARCHAR(50) NOT NULL,
+  `carga_academica` INT NOT NULL,
+  `docente_id_docente` INT NOT NULL,
+  PRIMARY KEY (`id_semestre`),
+  INDEX `fk_semestre_docente_idx` (`docente_id_docente` ASC) VISIBLE,
+  CONSTRAINT `fk_semestre_docente`
+    FOREIGN KEY (`docente_id_docente`)
+    REFERENCES `cargabd`.`docente` (`id_docente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
